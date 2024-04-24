@@ -27,19 +27,32 @@ app.post('/books', async (req, res) => {
             });
         }
 
-    const newBook = {
-        title: req.body.title,
-        author: req.body.author,
-        publishYear: req.body.publishYear
-    }    
+        const newBook = {
+            title: req.body.title,
+            author: req.body.author,
+            publishYear: req.body.publishYear
+        }
 
-    const book = await Book.create(newBook);
-  
+        const book = await Book.create(newBook);
+
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message })
     }
 });
+
+app.get('/books', async (req, res) => {
+    try {
+        const books = await Book.find({});
+        return res.status(200).json({
+            count: books.length,
+            data: books
+        });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message })
+    }
+})
 
 app.listen(PORT, () => console.log(`Listening on port - ${PORT}`));
 
