@@ -90,11 +90,34 @@ app.put('/books/:id', async (req, res) => {
 
         return res.status(200).send({ message: 'Book updated successfully' })
 
- 
+
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message })
     }
+});
+
+
+app.delete('/books/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ message: 'Invalid book id.' });
+        }
+
+        if (!id) {
+            return res.status(404).send({ message: 'Invalid book id.' });
+        }
+
+        await Book.findByIdAndDelete(id);
+        res.status(200).send({ message: 'Successfully deleted.' });
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message });
+    }
+
 })
 
 app.listen(PORT, () => console.log(`Listening on port - ${PORT}`));
