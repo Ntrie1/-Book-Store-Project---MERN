@@ -52,6 +52,17 @@ app.get('/books', async (req, res) => {
         console.log(error.message);
         res.status(500).send({ message: error.message })
     }
+});
+
+app.get('/books/:id', async (req, res) => {
+    try {
+        const bookId = req.params.id;
+        const book = await Book.findById(bookId);
+        return res.status(200).json(book);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message })
+    }
 })
 
 app.listen(PORT, () => console.log(`Listening on port - ${PORT}`));
