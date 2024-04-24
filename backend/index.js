@@ -78,6 +78,9 @@ app.put('/books/:id', async (req, res) => {
         }
 
         const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ message: 'Book not found.' });
+        }
 
         const result = await Book.findByIdAndUpdate(id, req.body);
 
@@ -87,7 +90,7 @@ app.put('/books/:id', async (req, res) => {
 
         return res.status(200).send({ message: 'Book updated successfully' })
 
-
+ 
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message })
