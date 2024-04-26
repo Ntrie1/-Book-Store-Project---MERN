@@ -1,11 +1,18 @@
 import './App.css'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
 
   return (
     <>
-      <div className='bg-red-400 text-white'>hi app</div>
+      <Routes>
+        <Route path='' element={}/>
+        <Route path='' element={}/>
+        <Route path='' element={}/>
+        <Route path='' element={}/>
+        <Route path='' element={}/>
+      </Routes>
     </>
   )
 }
