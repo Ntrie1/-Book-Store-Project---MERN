@@ -72,7 +72,7 @@ const HomePage = () => {
                                             <BsInfoCircle className="text-2xl text-green-800" />
                                         </Link>
 
-                                        <Link to={`books/edit${book._id}`}>
+                                        <Link to={`books/edit/${book._id}`}>
                                         <AiOutlineEdit className="text-2xl text-yellow-600" />
                                         </Link>
 
