@@ -24,9 +24,6 @@ const DetailsBook = () => {
             })
     }, []);
 
-    console.log(book);
-
-
     return (
         <div className="p-4">
             <BackButton />
